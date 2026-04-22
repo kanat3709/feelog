@@ -46,16 +46,16 @@ gem 'image_processing', '~> 1.2'
 gem 'devise'
 
 # 環境変数管理
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', groups: %i[development test]
 
 group :development, :test do
   gem 'rubocop'
   gem 'rubocop-checkstyle_formatter'
   gem 'rubocop-rails'
 
-  gem 'pry-byebug'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'pry-byebug'
 
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'

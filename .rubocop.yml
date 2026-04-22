@@ -24,3 +24,7 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'config/routes.rb'
+
+Layout/LineLength:
+  Exclude:
+    - 'config/initializers/devise.rb'
