@@ -1,0 +1,15 @@
+<header style="background-color: #dbeafe; padding: 1rem;">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+      <%= link_to 'Feelog', root_path, style: 'font-size: 1.25rem; font-weight: bold; color: #1e3a5f; text-decoration: none;' %>
+    </div>
+    <div>
+      <% if user_signed_in? %>
+        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, style: 'color: #1e3a5f;' %>
+      <% else %>
+        <%= link_to 'ログイン', new_user_session_path, style: 'color: #1e3a5f; margin-right: 1rem;' %>
+        <%= link_to '新規登録', new_user_registration_path, style: 'color: #1e3a5f;' %>
+      <% end %>
+    </div>
+  </div>
+</header>
