@@ -1,28 +1,54 @@
-<h2>ログイン</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <p><%= f.label :email, "メールアドレス" %></p>
-    <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
+<div class="glass-card">
+  <div class="card-title">
+    <h2>おかえりなさい</h2>
+    <p>今日の気持ちを、記録しよう。</p>
   </div>
 
-  <div class="field">
-    <p><%= f.label :password, "パスワード" %></p>
-    <p><%= f.password_field :password, autocomplete: "current-password" %></p>
-  </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me, "ログイン状態を保持する" %>
+    <div class="field-group">
+      <div class="field">
+        <label>メールアドレス</label>
+        <div class="input-row">
+          <span class="mat-icon">mail</span>
+          <%= f.email_field :email, placeholder: "hello@feelog.com", autocomplete: "email" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>パスワード</label>
+        <div class="input-row">
+          <span class="mat-icon">lock</span>
+          <%= f.password_field :password, placeholder: "••••••••", autocomplete: "current-password", id: "pw-input" %>
+          <button class="eye-btn" id="eye-btn" onclick="togglePw()" type="button">visibility_off</button>
+        </div>
+        <%= link_to "パスワードをお忘れですか？", new_password_path(resource_name), class: "forgot-link" %>
+      </div>
     </div>
+
+    <%= f.submit "ログイン", class: "login-btn" %>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
+  <hr class="divider"/>
+  <p class="signup-text">
+    Feelogは初めてですか？
+    <%= link_to "新規登録はこちら", new_registration_path(resource_name) %>
+  </p>
+</div>
 
-<%= render "devise/shared/links" %>
+<script>
+function togglePw() {
+  const input = document.getElementById('pw-input');
+  const btn = document.getElementById('eye-btn');
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.textContent = 'visibility';
+    btn.style.color = '#9C6B7A';
+  } else {
+    input.type = 'password';
+    btn.textContent = 'visibility_off';
+    btn.style.color = '#bfb3b1';
+  }
+}
+</script>
