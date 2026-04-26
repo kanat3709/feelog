@@ -171,3 +171,36 @@ main {
   background: #fbf9f1;
 }
 
+.terms-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.terms-row input[type="checkbox"] {
+  margin-top: 2px;
+  accent-color: #9C6B7A;
+  flex-shrink: 0;
+}
+
+.submit-btn {
+  width: 100%;
+  background: linear-gradient(to right, #f7c1bb, #cee5da);
+  color: #754d49;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem;
+  border-radius: 2rem;
+  border: none;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  margin-top: 0.25rem;
+  transition: box-shadow 0.3s, transform 0.15s;
+}
+
+.submit-btn:hover {
+  box-shadow: 0 4px 20px rgba(125,84,79,0.15);
+  transform: translateY(-1px);
+}
