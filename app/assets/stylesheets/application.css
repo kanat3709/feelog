@@ -175,8 +175,8 @@ main {
   display: flex;
   align-items: flex-start;
   gap: 0.6rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .terms-row input[type="checkbox"] {
@@ -196,7 +196,7 @@ main {
   border: none;
   cursor: pointer;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  margin-top: 0.25rem;
+  margin-top: 0.3rem;
   transition: box-shadow 0.3s, transform 0.15s;
 }
 
