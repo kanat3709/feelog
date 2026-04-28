@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_23_092349) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_28_115537) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -42,6 +42,36 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_092349) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "emotions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_emotions_on_name", unique: true
+  end
+
+  create_table "post_emotions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "emotion_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["emotion_id"], name: "index_post_emotions_on_emotion_id"
+    t.index ["post_id"], name: "index_post_emotions_on_post_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.boolean "is_public", default: true, null: false
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
+    t.text "memo"
+    t.string "place"
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.date "visited_at"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email", default: "", null: false
@@ -57,4 +87,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_092349) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "post_emotions", "emotions"
+  add_foreign_key "post_emotions", "posts"
+  add_foreign_key "posts", "users"
 end
