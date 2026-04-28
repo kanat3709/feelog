@@ -9,3 +9,11 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Emotion.create!([
+                  { name: '😊 喜び' },
+                  { name: '😢 悲しみ' },
+                  { name: '😌 穏やか' },
+                  { name: '🌟 感動' },
+                  { name: '😮 驚き' }
+                ])

@@ -8,4 +8,6 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :terms_of_service, acceptance: true
+
+  has_many :posts, dependent: :destroy # 追加
 end
