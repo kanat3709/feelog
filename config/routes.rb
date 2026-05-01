@@ -1,23 +1,43 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # get "welcome/index"
   root 'welcome#index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # 利用規約・プライバシーポリシー
-  get 'terms', to: 'static_pages#terms'
+  get 'terms',   to: 'static_pages#terms'
   get 'privacy', to: 'static_pages#privacy'
+
   devise_for :users
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # マイページ
+  get 'mypage', to: 'mypage#index', as: :mypage
+
+  # 投稿
+  resources :posts do
+    member do
+      post   :like
+      delete :unlike
+      post   :wish
+      delete :unwish
+    end
+  end
+
+  # いいね一覧
+  get 'likes',      to: 'likes#index',      as: :likes
+
+  # マップ
+  get 'map',        to: 'map#index',        as: :map
+
+  # 行きたい！一覧
+  get 'wish_lists', to: 'wish_lists#index', as: :wish_lists
+
+  # ユーザー情報変更
+  resources :users, only: [:edit, :update]
+
+  # ヘルスチェック
   get 'up' => 'rails/health#show', as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
+  # PWA（必要になったらコメントアウトを外す）
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

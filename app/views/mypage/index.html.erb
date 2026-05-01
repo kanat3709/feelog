@@ -1,0 +1,131 @@
+<%# app/views/mypage/index.html.erb %>
+<div class="mypage-wrapper">
+
+  <%# ── プロフィール ── %>
+  <section class="mypage-profile" aria-label="プロフィール">
+    <div class="profile-inner">
+      <div class="profile-avatar-wrap">
+        <% if current_user.avatar.attached? %>
+          <%= image_tag current_user.avatar, class: "profile-avatar", alt: current_user.name %>
+        <% else %>
+          <span class="material-symbols-outlined profile-avatar-icon">account_circle</span>
+        <% end %>
+      </div>
+      <div class="profile-info">
+        <h1 class="profile-name"><%= current_user.name %></h1>
+        <p class="profile-email"><%= current_user.email %></p>
+      </div>
+      <%= link_to edit_user_path(current_user), class: "btn-edit-profile" do %>
+        <span class="material-symbols-outlined">edit</span>
+        プロフィール編集
+      <% end %>
+    </div>
+  </section>
+
+  <%# ── 統計カード ── %>
+  <section class="mypage-stats" aria-label="記録統計">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="material-symbols-outlined stat-icon">photo_library</span>
+        <p class="stat-value"><%= @posts.size %></p>
+        <p class="stat-label">投稿数</p>
+      </div>
+      <div class="stat-card">
+        <span class="material-symbols-outlined stat-icon">location_on</span>
+        <p class="stat-value"><%= @posts.map(&:place).compact.uniq.size %></p>
+        <p class="stat-label">訪れた場所</p>
+      </div>
+      <div class="stat-card">
+        <span class="material-symbols-outlined stat-icon">favorite</span>
+        <p class="stat-value"><%= @total_likes %></p>
+        <p class="stat-label">もらったいいね</p>
+      </div>
+    </div>
+  </section>
+
+  <%# ── 感情サマリ ── %>
+  <% if @emotion_summary.present? %>
+    <section class="mypage-emotions" aria-label="感情の記録">
+      <h2 class="section-title">
+        <span class="material-symbols-outlined">mood</span>
+        あなたの旅の感情
+      </h2>
+      <div class="emotion-chips">
+        <% @emotion_summary.each do |emotion_name, count| %>
+          <span class="emotion-chip">
+            <%= emotion_emoji(emotion_name) %> <%= emotion_name %>
+            <span class="emotion-chip-count"><%= count %></span>
+          </span>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+
+  <%# ── 投稿グリッド ── %>
+  <section class="mypage-posts" aria-label="投稿一覧">
+    <div class="posts-header">
+      <h2 class="section-title">
+        <span class="material-symbols-outlined">travel_explore</span>
+        旅の記録
+      </h2>
+      <%= link_to new_post_path, class: "btn-new-post" do %>
+        <span class="material-symbols-outlined">add</span>
+        新しい旅を記録
+      <% end %>
+    </div>
+
+    <% if @posts.empty? %>
+      <div class="posts-empty">
+        <span class="material-symbols-outlined posts-empty-icon">luggage</span>
+        <p class="posts-empty-title">まだ旅の記録がありません</p>
+        <p class="posts-empty-sub">最初の思い出を記録してみましょう！</p>
+        <%= link_to new_post_path, class: "btn-primary" do %>
+          <span class="material-symbols-outlined">add</span>
+          旅を記録する
+        <% end %>
+      </div>
+    <% else %>
+      <div class="posts-grid">
+        <% @posts.each do |post| %>
+          <%= link_to post_path(post), class: "post-card" do %>
+            <div class="post-card-thumb">
+              <% if post.image.attached? %>
+                <%= image_tag post.image, class: "post-card-img", alt: post.title %>
+              <% else %>
+                <div class="post-card-no-img">
+                  <span class="material-symbols-outlined">image</span>
+                </div>
+              <% end %>
+              <% unless post.is_public %>
+                <span class="post-card-badge post-card-badge--private">
+                  <span class="material-symbols-outlined">lock</span>
+                </span>
+              <% end %>
+              <% if post.emotions.any? %>
+                <span class="post-card-emotion">
+                  <%= emotion_emoji(post.emotions.first.name) %>
+                </span>
+              <% end %>
+            </div>
+            <div class="post-card-body">
+              <p class="post-card-title"><%= post.title %></p>
+              <% if post.place.present? %>
+                <p class="post-card-place">
+                  <span class="material-symbols-outlined">location_on</span>
+                  <%= post.place %>
+                </p>
+              <% end %>
+              <% if post.visited_at.present? %>
+                <p class="post-card-date">
+                  <span class="material-symbols-outlined">calendar_today</span>
+                  <%= l post.visited_at, format: :short %>
+                </p>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+
+</div>
