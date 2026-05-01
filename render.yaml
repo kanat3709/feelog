@@ -2,7 +2,8 @@ services:
   - type: web
     name: feelog
     runtime: ruby
-    buildCommand: bundle install; bundle exec rails db:migrate; bundle exec rake assets:precompile; bundle exec rake assets:clean;
+    buildCommand: bundle install && bundle exec rails assets:precompile && bundle exec rails assets:clean && bundle exec rails db:migrate
+    startCommand: bundle exec puma -C config/puma.rb
     envVars:
       - key: RAILS_MASTER_KEY
         sync: false
