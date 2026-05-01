@@ -2,6 +2,7 @@
 
 class WelcomeController < ApplicationController
   def index
-    redirect_to root_path if user_signed_in?
+    # マイページ実装後に有効化
+    # redirect_to mypage_path if user_signed_in?
   end
 end
