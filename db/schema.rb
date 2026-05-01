@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_01_054924) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_01_080532) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -55,6 +55,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_01_054924) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -100,6 +101,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_01_054924) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["post_id"], name: "index_wish_lists_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_wish_lists_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_wish_lists_on_user_id"
   end
 

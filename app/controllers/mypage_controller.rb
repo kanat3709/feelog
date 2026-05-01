@@ -14,7 +14,7 @@ class MypageController < ApplicationController
     # 感情サマリ
     @emotion_summary = current_user.posts
                                    .joins(post_emotions: :emotion)
-                                   .group("emotions.name")
+                                   .group('emotions.name')
                                    .count
   end
 end

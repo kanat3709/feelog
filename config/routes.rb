@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   get 'wish_lists', to: 'wish_lists#index', as: :wish_lists
 
   # ユーザー情報変更
-  resources :users, only: [:edit, :update]
+  resources :users, only: %i[edit update]
 
   # ヘルスチェック
   get 'up' => 'rails/health#show', as: :rails_health_check
