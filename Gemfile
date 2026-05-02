@@ -29,9 +29,9 @@ gem 'jbuilder'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
-gem 'solid_cable'
-gem 'solid_cache'
-gem 'solid_queue'
+# gem 'solid_cable'
+# gem 'solid_cache'
+# gem 'solid_queue'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
@@ -44,6 +44,10 @@ gem 'thruster', require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'image_processing', '~> 1.2'
+
+# 外部ストレージ（Cloudinary）
+gem 'cloudinary'
+gem 'activestorage-cloudinary-service'
 
 # 認証機能
 gem 'devise'
