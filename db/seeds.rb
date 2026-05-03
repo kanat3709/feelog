@@ -10,10 +10,12 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Emotion.create!([
-                  { name: '😊 喜び' },
-                  { name: '😢 悲しみ' },
-                  { name: '😌 穏やか' },
-                  { name: '🌟 感動' },
-                  { name: '😮 驚き' }
-                ])
+[
+  '😊 喜び',
+  '😢 悲しみ',
+  '😌 穏やか',
+  '🌟 感動',
+  '😮 驚き'
+].each do |name|
+  Emotion.find_or_create_by!(name: name)
+end
