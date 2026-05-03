@@ -1,0 +1,163 @@
+<div class="post-form-wrapper">
+  <div class="post-form-header">
+    <h1 class="post-form-title">旅の記録を追加</h1>
+    <p class="post-form-subtitle">写真・場所・感情を記録しましょう</p>
+  </div>
+
+  <%= form_with model: @post, local: true, class: "post-form" do |f| %>
+
+    <%# エラーメッセージ %>
+    <% if @post.errors.any? %>
+      <div class="form-errors">
+        <p class="form-errors-title">
+          <span class="material-symbols-outlined">error</span>
+          <%= @post.errors.count %>件のエラーがあります
+        </p>
+        <ul class="form-errors-list">
+          <% @post.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%# 写真アップロード %>
+    <div class="form-group">
+      <label class="form-label">
+        <span class="material-symbols-outlined">photo_camera</span>
+        写真
+      </label>
+      <div class="image-upload-area" id="imageUploadArea">
+        <span class="material-symbols-outlined image-upload-icon">add_photo_alternate</span>
+        <p class="image-upload-text">クリックして写真を選択</p>
+        <%= f.file_field :image, accept: "image/*", class: "image-upload-input", id: "imageInput" %>
+      </div>
+      <div class="image-preview-wrap" id="imagePreviewWrap" style="display:none;">
+        <img id="imagePreview" src="" alt="プレビュー" class="image-preview">
+        <button type="button" class="image-remove-btn" id="imageRemoveBtn">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+    </div>
+
+    <%# タイトル %>
+    <div class="form-group">
+      <label class="form-label" for="post_title">
+        <span class="material-symbols-outlined">title</span>
+        タイトル <span class="form-required">必須</span>
+      </label>
+      <%= f.text_field :title,
+            placeholder: "例：金沢・兼六園への旅",
+            class: "form-input #{'form-input--error' if @post.errors[:title].any?}" %>
+      <% if @post.errors[:title].any? %>
+        <p class="form-error-msg"><%= @post.errors[:title].first %></p>
+      <% end %>
+    </div>
+
+    <%# 場所 %>
+    <div class="form-group">
+      <label class="form-label" for="post_place">
+        <span class="material-symbols-outlined">location_on</span>
+        場所
+      </label>
+      <%= f.text_field :place,
+            placeholder: "例：石川県金沢市",
+            class: "form-input" %>
+    </div>
+
+    <%# 訪れた日付 %>
+    <div class="form-group">
+      <label class="form-label" for="post_visited_at">
+        <span class="material-symbols-outlined">calendar_today</span>
+        訪れた日付
+      </label>
+      <%= f.date_field :visited_at, class: "form-input" %>
+    </div>
+
+    <%# ひとことメモ %>
+    <div class="form-group">
+      <label class="form-label" for="post_memo">
+        <span class="material-symbols-outlined">edit_note</span>
+        ひとことメモ
+      </label>
+      <%= f.text_area :memo,
+            placeholder: "旅の思い出を一言で...",
+            rows: 4,
+            class: "form-textarea" %>
+    </div>
+
+    <%# 感情タグ %>
+    <div class="form-group">
+      <label class="form-label">
+        <span class="material-symbols-outlined">mood</span>
+        感情タグ
+      </label>
+      <div class="emotion-radio-group">
+        <% @emotions.each do |emotion| %>
+          <label class="emotion-radio-label">
+            <%= f.radio_button :emotion_ids, emotion.id,
+                  class: "emotion-radio-input",
+                  id: "emotion_#{emotion.id}" %>
+            <span class="emotion-radio-btn">
+              <span class="emotion-radio-name"><%= emotion.name %></span>
+            </span>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
+    <%# 公開/非公開 %>
+    <div class="form-group">
+      <label class="form-label">
+        <span class="material-symbols-outlined">public</span>
+        公開設定
+      </label>
+      <div class="toggle-group">
+        <label class="toggle-label">
+          <%= f.check_box :is_public, class: "toggle-input", id: "post_is_public" %>
+          <span class="toggle-switch"></span>
+          <span class="toggle-text">公開する</span>
+        </label>
+        <p class="toggle-hint">公開すると他のユーザーに表示されます</p>
+      </div>
+    </div>
+
+    <%# 送信ボタン %>
+    <div class="form-actions">
+      <%= link_to mypage_path, class: "btn-cancel" do %>
+        キャンセル
+      <% end %>
+      <%= f.submit "記録する", class: "btn-submit" %>
+    </div>
+
+  <% end %>
+</div>
+
+<script>
+  const input = document.getElementById('imageInput');
+  const area = document.getElementById('imageUploadArea');
+  const previewWrap = document.getElementById('imagePreviewWrap');
+  const preview = document.getElementById('imagePreview');
+  const removeBtn = document.getElementById('imageRemoveBtn');
+
+  area.addEventListener('click', () => input.click());
+
+  input.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      preview.src = ev.target.result;
+      area.style.display = 'none';
+      previewWrap.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  removeBtn.addEventListener('click', () => {
+    input.value = '';
+    preview.src = '';
+    area.style.display = 'flex';
+    previewWrap.style.display = 'none';
+  });
+</script>
