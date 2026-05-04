@@ -53,7 +53,7 @@
       <div class="emotion-chips">
         <% @emotion_summary.each do |emotion_name, count| %>
           <span class="emotion-chip">
-            <%= emotion_emoji(emotion_name) %> <%= emotion_name %>
+            <%= emotion_name %>
             <span class="emotion-chip-count"><%= count %></span>
           </span>
         <% end %>
@@ -99,11 +99,6 @@
               <% unless post.is_public %>
                 <span class="post-card-badge post-card-badge--private">
                   <span class="material-symbols-outlined">lock</span>
-                </span>
-              <% end %>
-              <% if post.emotions.any? %>
-                <span class="post-card-emotion">
-                  <%= emotion_emoji(post.emotions.first.name) %>
                 </span>
               <% end %>
             </div>

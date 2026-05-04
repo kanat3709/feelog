@@ -3,6 +3,9 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_emotions, only: %i[new create]
+  before_action :set_post, only: [:show]
+
+  def show; end
 
   def new
     @post = Post.new
@@ -20,19 +23,25 @@ class PostsController < ApplicationController
 
   private
 
+  def set_post
+    @post = current_user.posts.find(params[:id])
+  end
+
   def set_emotions
     @emotions = Emotion.all
   end
 
+  # rubocop:disable Rails/StrongParametersExpect
   def post_params
-    params.expect(
-      post: [:title,
-             :memo,
-             :place,
-             :visited_at,
-             :is_public,
-             :image,
-             { emotion_ids: [] }]
+    params.require(:post).permit(
+      :title,
+      :memo,
+      :place,
+      :visited_at,
+      :is_public,
+      :image,
+      emotion_ids: []
     )
   end
+  # rubocop:enable Rails/StrongParametersExpect
 end

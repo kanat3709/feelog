@@ -28,3 +28,6 @@ Metrics/BlockLength:
 Layout/LineLength:
   Exclude:
     - 'config/initializers/devise.rb'
+
+Rails/I18nLocaleTexts:
+  Enabled: false
