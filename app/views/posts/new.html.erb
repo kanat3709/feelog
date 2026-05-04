@@ -95,9 +95,11 @@
       <div class="emotion-radio-group">
         <% @emotions.each do |emotion| %>
           <label class="emotion-radio-label">
-            <%= f.radio_button :emotion_ids, emotion.id,
-                  class: "emotion-radio-input",
-                  id: "emotion_#{emotion.id}" %>
+            <input type="radio"
+                   name="post[emotion_ids][]"
+                   value="<%= emotion.id %>"
+                   class="emotion-radio-input"
+                   id="emotion_<%= emotion.id %>">
             <span class="emotion-radio-btn">
               <span class="emotion-radio-name"><%= emotion.name %></span>
             </span>

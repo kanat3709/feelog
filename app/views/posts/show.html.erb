@@ -1,0 +1,67 @@
+<div class="post-detail-wrapper">
+
+  <%= link_to mypage_path, class: "post-detail-back" do %>
+    <span class="material-symbols-outlined">arrow_back</span>
+    マイページへ戻る
+  <% end %>
+
+  <div class="post-detail-card">
+
+    <% if @post.image.attached? %>
+      <div class="post-detail-image-wrap">
+        <%= image_tag @post.image, class: "post-detail-image", alt: @post.title %>
+      </div>
+    <% else %>
+      <div class="post-detail-image-placeholder">
+        <span class="material-symbols-outlined">photo</span>
+      </div>
+    <% end %>
+
+    <div class="post-detail-body">
+
+      <h1 class="post-detail-title"><%= @post.title %></h1>
+
+      <div class="post-detail-meta">
+        <% if @post.place.present? %>
+          <span class="post-detail-meta-item">
+            <span class="material-symbols-outlined">location_on</span>
+            <%= @post.place %>
+          </span>
+        <% end %>
+        <% if @post.visited_at.present? %>
+          <span class="post-detail-meta-item">
+            <span class="material-symbols-outlined">calendar_today</span>
+            <%= @post.visited_at.strftime('%Y年%-m月%-d日') %>
+          </span>
+        <% end %>
+        <span class="post-detail-meta-item">
+          <span class="material-symbols-outlined">
+            <%= @post.is_public? ? 'public' : 'lock' %>
+          </span>
+          <%= @post.is_public? ? '公開' : '非公開' %>
+        </span>
+      </div>
+
+      <% if @post.emotions.any? %>
+        <div class="post-detail-emotions">
+          <% @post.emotions.each do |emotion| %>
+            <span class="post-detail-emotion-chip">
+              <%= emotion.name %>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if @post.memo.present? %>
+        <div class="post-detail-memo">
+          <p class="post-detail-memo-label">
+            <span class="material-symbols-outlined">edit_note</span>
+            ひとことメモ
+          </p>
+          <p class="post-detail-memo-text"><%= @post.memo %></p>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
