@@ -12,6 +12,11 @@
 
 # frozen_string_literal: true
 
+# 古い絵文字タグを削除
+old_names = ['😊 喜び', '😢 悲しみ', '😌 穏やか', '🌟 感動', '😮 驚き']
+Emotion.where(name: old_names).each(&:destroy)
+
+# 新しいタグを登録
 [
   '楽しかった',
   '最高！',
