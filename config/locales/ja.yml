@@ -9,6 +9,14 @@ ja:
         password_confirmation: "パスワード（確認）"
         name: "ユーザー名"
         terms_of_service: "利用規約"
+      post:
+        title: "タイトル"
+        image: "画像"
+        memo: "ひとことメモ"
+        place: "場所"
+        visited_at: "訪れた日付"
+        is_public: "公開設定"
+        emotion_ids: "感情タグ"
   errors:
     messages:
       blank: "を入力してください"
