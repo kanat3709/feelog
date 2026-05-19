@@ -12,6 +12,13 @@ class PostsController < ApplicationController
   end
 
   def create
+    if params[:post][:image].present? && params[:post][:image].size > 10.megabytes
+      @post = current_user.posts.build(post_params.except(:image))
+      @post.errors.add(:image, "のサイズは10MB以下にしてください")
+      render :new, status: :unprocessable_content
+      return
+    end
+
     @post = current_user.posts.build(post_params)
 
     if @post.save
