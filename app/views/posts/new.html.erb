@@ -50,7 +50,7 @@
             placeholder: "例：金沢・兼六園への旅",
             class: "form-input #{'form-input--error' if @post.errors[:title].any?}" %>
       <% if @post.errors[:title].any? %>
-        <p class="form-error-msg"><%= @post.errors[:title].first %></p>
+        <p class="form-error-msg"><%= @post.errors.full_messages_for(:title).first %></p>
       <% end %>
     </div>
 
