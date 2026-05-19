@@ -53,6 +53,7 @@
       <div class="emotion-chips">
         <% @emotion_summary.each do |emotion_name, count| %>
           <span class="emotion-chip">
+            <i class="ti <%= emotion_icon(emotion_name) %>"></i>
             <%= emotion_name %>
             <span class="emotion-chip-count"><%= count %></span>
           </span>

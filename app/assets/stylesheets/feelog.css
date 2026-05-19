@@ -425,16 +425,24 @@ a { color: inherit; text-decoration: none; }
 .emotion-radio-input { display: none; }
 
 .emotion-radio-btn {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 12px 16px;
+  gap: 6px;
+  padding: 8px 16px;
   border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   background: var(--color-bg-card);
-  font-size: 1.4rem;
+  font-size: .9rem;
   transition: border-color .2s, background .2s, box-shadow .2s;
+}
+
+.emotion-radio-btn i {
+  font-size: 15px;
+  color: var(--color-text-sub);
+}
+
+.emotion-radio-input:checked + .emotion-radio-btn i {
+  color: var(--color-mauve);
 }
 
 .emotion-radio-name {
@@ -646,6 +654,7 @@ a { color: inherit; text-decoration: none; }
 .post-detail-emotion-chip {
   display: inline-flex;
   align-items: center;
+  gap: 6px;      /* ← gap: 6px を追加（既存はgapなし） */
   padding: 6px 14px;
   border-radius: var(--radius-full);
   background: rgba(156,107,122,.08);

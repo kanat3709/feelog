@@ -10,12 +10,21 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# frozen_string_literal: true
+
 [
-  '😊 喜び',
-  '😢 悲しみ',
-  '😌 穏やか',
-  '🌟 感動',
-  '😮 驚き'
+  '楽しかった',
+  '最高！',
+  'のんびり',
+  '発見！',
+  '懐かしかった',
+  '切なかった',
+  '残念だった',
+  'しんどかった',
+  'おいしかった',
+  '幸せ',
+  '感動した',
+  '達成感',
 ].each do |name|
   Emotion.find_or_create_by!(name: name)
 end

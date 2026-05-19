@@ -35,7 +35,7 @@ class PostsController < ApplicationController
   end
 
   def set_emotions
-    @emotions = Emotion.all
+    @emotions = Emotion.order(:id)
   end
 
   # rubocop:disable Rails/StrongParametersExpect
