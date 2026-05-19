@@ -8,7 +8,6 @@ class MypageController < ApplicationController
                          .includes(:emotions, image_attachment: :blob)
                          .order(visited_at: :desc, created_at: :desc)
 
-    # likesテーブルが存在する場合のみカウント（存在しなければ0）
     @total_likes = 0
 
     # 感情サマリ（emotions.id順で表示）
@@ -17,7 +16,7 @@ class MypageController < ApplicationController
                           .joins(post_emotions: :emotion)
                           .where(emotions: { id: emotion.id })
                           .count
-      hash[emotion.name] = count if count > 0
-    end                               
+      hash[emotion.name] = count if count.positive?
+    end
   end
 end
