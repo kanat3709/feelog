@@ -1,0 +1,30 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1 class="auth-title">パスワードリセット</h1>
+      <p class="auth-subtitle">ご登録のメールアドレスをご入力ください。<br>再設定用のメールをお送りします。</p>
+    </div>
+
+    <%= render "users/shared/error_messages", resource: resource %>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <div class="form-group">
+        <label class="form-label">メールアドレス</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined input-icon">mail</span>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",
+              class: "form-input input-with-icon",
+              placeholder: "example@feelog.com" %>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit "再設定メールを送信する", class: "btn-primary btn-full" %>
+      </div>
+    <% end %>
+
+    <div class="auth-links">
+      <%= link_to "ログイン画面へ戻る", new_user_session_path, class: "auth-link" %>
+    </div>
+  </div>
+</div>
