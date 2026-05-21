@@ -63,11 +63,12 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
-    port: 587,
+    port: 465,
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_APP_PASSWORD"],
     authentication: :plain,
-    enable_starttls_auto: true
+    tls: true,
+    enable_starttls_auto: false
   }
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via bin/rails credentials:edit.
