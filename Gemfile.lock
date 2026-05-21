@@ -394,6 +394,7 @@ GEM
     ruby-vips (2.3.0)
       ffi (~> 1.12)
       logger
+    ruby_http_client (3.6.0)
     rubyzip (3.2.2)
     securerandom (0.4.1)
     selenium-webdriver (4.43.0)
@@ -402,6 +403,11 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
+    sendgrid-actionmailer (3.2.0)
+      mail (~> 2.7)
+      sendgrid-ruby (~> 6.4)
+    sendgrid-ruby (6.7.0)
+      ruby_http_client (~> 3.4)
     sshkit (1.25.0)
       base64
       logger
@@ -486,6 +492,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rails-omakase
   selenium-webdriver
+  sendgrid-actionmailer
   stimulus-rails
   thruster
   turbo-rails

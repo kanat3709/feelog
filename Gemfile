@@ -52,6 +52,9 @@ gem 'cloudinary'
 # 認証機能
 gem 'devise'
 
+# メール送信（SendGrid Web API）
+gem 'sendgrid-actionmailer'
+
 # 環境変数管理
 gem 'dotenv-rails', groups: %i[development test]
 
