@@ -689,6 +689,33 @@ a { color: inherit; text-decoration: none; }
   white-space: pre-wrap;
 }
 
+.post-detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.btn-edit-post {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--color-mauve);
+  border: 1.5px solid var(--color-mauve-light);
+  background: var(--color-bg-card);
+  transition: background .2s, box-shadow .2s;
+}
+
+.btn-edit-post:hover {
+  background: rgba(156,107,122,.06);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-edit-post .material-symbols-outlined { font-size: 18px; }
+
 /* ============================================
    パスワードリセット画面
    ============================================ */
