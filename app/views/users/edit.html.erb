@@ -1,0 +1,97 @@
+<%# app/views/users/edit.html.erb %>
+<div class="post-form-wrapper">
+
+  <div class="post-form-header">
+    <h1 class="post-form-title">プロフィール編集</h1>
+    <p class="post-form-subtitle">アイコン画像とユーザー名を変更できます</p>
+  </div>
+
+  <%= form_with model: @user, url: user_path(@user), method: :patch,
+                html: { multipart: true } do |f| %>
+
+    <%# バリデーションエラー %>
+    <% if @user.errors.any? %>
+      <div class="form-errors">
+        <p class="form-errors-title">
+          <span class="material-symbols-outlined">error</span>
+          以下のエラーがあります
+        </p>
+        <ul class="form-errors-list">
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%# アバター %>
+    <div class="form-group">
+      <label class="form-label">
+        <span class="material-symbols-outlined">account_circle</span>
+        アイコン画像
+      </label>
+
+      <%# 現在 or プレビュー %>
+      <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 16px;">
+        <div id="avatar-preview-wrapper" style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--color-mauve-light); flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--color-bg);">
+          <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar,
+                          id: "avatar-preview",
+                          style: "width:100%; height:100%; object-fit:cover;" %>
+          <% else %>
+            <span class="material-symbols-outlined" id="avatar-default"
+                  style="font-size: 64px; color: var(--color-mauve-light);">account_circle</span>
+            <img id="avatar-preview" style="display:none; width:100%; height:100%; object-fit:cover;" />
+          <% end %>
+        </div>
+
+        <div>
+          <label for="avatar-input" class="btn-edit-profile" style="cursor: pointer;">
+            <span class="material-symbols-outlined">upload</span>
+            画像を選択
+          </label>
+          <%= f.file_field :avatar, id: "avatar-input", accept: "image/*", style: "display:none;" %>
+          <p style="font-size: .75rem; color: var(--color-text-sub); margin-top: 8px;">
+            JPG / PNG / GIF（5MB以内）
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <%# ユーザー名 %>
+    <div class="form-group">
+      <%= f.label :name, class: "form-label" do %>
+        <span class="material-symbols-outlined">badge</span>
+        ユーザー名
+        <span class="form-required">必須</span>
+      <% end %>
+      <%= f.text_field :name, class: "form-input", placeholder: "ユーザー名を入力" %>
+    </div>
+
+    <div class="form-actions">
+      <%= link_to mypage_path, class: "btn-cancel" do %>
+        キャンセル
+      <% end %>
+      <%= f.submit "保存する", class: "btn-submit" %>
+    </div>
+
+  <% end %>
+</div>
+
+<script>
+  document.getElementById('avatar-input').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const preview = document.getElementById('avatar-preview');
+    const defaultIcon = document.getElementById('avatar-default');
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      preview.src = event.target.result;
+      preview.style.display = 'block';
+      if (defaultIcon) defaultIcon.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
