@@ -692,12 +692,14 @@ a { color: inherit; text-decoration: none; }
 .post-detail-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 12px;  
   margin-bottom: 16px;
 }
 
 .btn-edit-post {
   display: inline-flex;
   align-items: center;
+  justify-content: center; 
   gap: 6px;
   padding: 8px 20px;
   border-radius: var(--radius-full);
@@ -715,6 +717,28 @@ a { color: inherit; text-decoration: none; }
 }
 
 .btn-edit-post .material-symbols-outlined { font-size: 18px; }
+
+.btn-delete-post {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--color-mauve);
+  border: 1.5px solid var(--color-mauve-light);
+  background: var(--color-bg-card);
+  transition: background .2s, box-shadow .2s;
+}
+
+.btn-delete-post:hover {
+  background: rgba(156, 107, 122, .06);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-delete-post .material-symbols-outlined { font-size: 18px; }
 
 /* ============================================
    パスワードリセット画面

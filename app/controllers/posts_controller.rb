@@ -3,7 +3,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_emotions, only: %i[new create edit update]  
-  before_action :set_post, only: %i[show edit update]             
+  before_action :set_post, only: %i[show edit update destroy]             
 
   def show; end
 
@@ -47,6 +47,11 @@ class PostsController < ApplicationController
     else
       render :edit, status: :unprocessable_content
     end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to mypage_path, notice: '投稿を削除しました。'
   end
 
   private

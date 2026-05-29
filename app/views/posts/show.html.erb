@@ -10,6 +10,16 @@
       <span class="material-symbols-outlined">edit</span>
       編集
     <% end %>
+
+    <%= link_to post_path(@post),
+          data: {
+            turbo_method: :delete,
+            turbo_confirm: 'この投稿を削除しますか？'
+          },
+          class: "btn-delete-post" do %>
+      <span class="material-symbols-outlined">delete</span>
+      削除
+    <% end %>
   </div>
 
   <div class="post-detail-card">
