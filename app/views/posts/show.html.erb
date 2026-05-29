@@ -5,6 +5,13 @@
     マイページへ戻る
   <% end %>
 
+  <div class="post-detail-actions">
+    <%= link_to edit_post_path(@post), class: "btn-edit-post" do %>
+      <span class="material-symbols-outlined">edit</span>
+      編集
+    <% end %>
+  </div>
+
   <div class="post-detail-card">
 
     <% if @post.image.attached? %>
