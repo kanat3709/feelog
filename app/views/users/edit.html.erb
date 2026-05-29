@@ -33,17 +33,19 @@
 
       <%# 現在 or プレビュー %>
       <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 16px;">
-        <div id="avatar-preview-wrapper" style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--color-mauve-light); flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--color-bg);">
-          <% if @user.avatar.attached? %>
-            <%= image_tag @user.avatar,
-                          id: "avatar-preview",
-                          style: "width:100%; height:100%; object-fit:cover;" %>
-          <% else %>
-            <span class="material-symbols-outlined" id="avatar-default"
-                  style="font-size: 64px; color: var(--color-mauve-light);">account_circle</span>
-            <img id="avatar-preview" style="display:none; width:100%; height:100%; object-fit:cover;" />
-          <% end %>
-        </div>
+        <% if @user.avatar.attached? %>
+            <div id="avatar-preview-wrapper" style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--color-mauve-light); flex-shrink: 0;">
+                <%= image_tag @user.avatar,
+                    id: "avatar-preview",
+                    style: "width:100%; height:100%; object-fit:cover;" %>
+            </div>
+        <% else %>
+            <div id="avatar-preview-wrapper" style="width: 80px; height: 80px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                <span class="material-symbols-outlined" id="avatar-default"
+                    style="font-size: 80px; color: var(--color-mauve-light);">account_circle</span>
+                <img id="avatar-preview" style="display:none; width:80px; height:80px; border-radius:50%; object-fit:cover; border: 1.5px solid var(--color-mauve-light);" />
+            </div>
+        <% end %>
 
         <div>
           <label for="avatar-input" class="btn-edit-profile" style="cursor: pointer;">
