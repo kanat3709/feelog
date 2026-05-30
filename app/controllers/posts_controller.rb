@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_emotions, only: %i[new create edit update]
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_public_post, only: %i[hide unhide]
+  before_action :require_admin!, only: %i[hide unhide]
 
   def show; end
 
@@ -52,6 +54,16 @@ class PostsController < ApplicationController
     redirect_to mypage_path, notice: '投稿を削除しました。'
   end
 
+  def hide
+    @post.update!(hidden: true)
+    redirect_to public_posts_path, notice: '投稿を非表示にしました。'
+  end
+
+  def unhide
+    @post.update!(hidden: false)
+    redirect_to public_post_path(@post), notice: '投稿を再表示しました。'
+  end
+
   private
 
   def set_post
@@ -75,4 +87,12 @@ class PostsController < ApplicationController
     )
   end
   # rubocop:enable Rails/StrongParametersExpect
+
+  def set_public_post
+    @post = Post.find(params[:id])
+  end
+
+  def require_admin!
+    redirect_to root_path, alert: '権限がありません。' unless current_user.admin?
+  end
 end

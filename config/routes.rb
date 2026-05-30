@@ -23,6 +23,8 @@ Rails.application.routes.draw do
       delete :unlike
       post   :wish
       delete :unwish
+      post   :hide
+      post   :unhide
     end
   end
 

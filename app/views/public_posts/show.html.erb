@@ -54,6 +54,19 @@
           <p class="post-detail-memo-text"><%= @post.memo %></p>
         </div>
       <% end %>
+
+      <%# 管理者のみ表示される非表示・再表示ボタン %>
+      <% if current_user&.admin? %>
+        <div class="post-detail-admin">
+          <% if @post.hidden? %>
+            <%= button_to '再表示する', unhide_post_path(@post), method: :post, class: "btn-unhide" %>
+          <% else %>
+            <%= button_to 'この投稿を非表示にする', hide_post_path(@post), method: :post, class: "btn-hide",
+                data: { turbo_confirm: 'この投稿を一覧から非表示にしますか？' } %>
+          <% end %>
+        </div>
+      <% end %>
+      
     </div>
   </div>
 </div>
