@@ -1,0 +1,45 @@
+<div class="mypage-wrapper">
+  <div class="posts-header">
+    <h1 class="section-title">
+      <span class="material-symbols-outlined">public</span>
+      みんなの旅
+    </h1>
+  </div>
+
+  <% if @posts.empty? %>
+    <div class="posts-empty">
+      <div class="posts-empty-icon material-symbols-outlined">travel_explore</div>
+      <p class="posts-empty-title">まだ公開されている旅の記録がありません</p>
+      <p class="posts-empty-sub">あなたの旅を公開して、みんなとシェアしませんか？</p>
+    </div>
+  <% else %>
+    <div class="posts-grid">
+      <% @posts.each do |post| %>
+        <div class="post-card">
+          <div class="post-card-thumb">
+            <% if post.image.attached? %>
+              <%= image_tag post.image, class: "post-card-img", alt: post.title %>
+            <% else %>
+              <div class="post-card-no-img">
+                <span class="material-symbols-outlined">image</span>
+              </div>
+            <% end %>
+          </div>
+          <div class="post-card-body">
+            <p class="post-card-title"><%= post.title %></p>
+            <% if post.place.present? %>
+              <p class="post-card-place">
+                <span class="material-symbols-outlined">location_on</span>
+                <%= post.place %>
+              </p>
+            <% end %>
+            <p class="post-card-author">
+              <span class="material-symbols-outlined">person</span>
+              <%= post.user.name %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

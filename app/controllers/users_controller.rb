@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
@@ -8,7 +10,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to mypage_path, notice: 'プロフィールを更新しました！'
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
@@ -20,6 +22,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :avatar)
+    params.expect(user: %i[name avatar])
   end
 end

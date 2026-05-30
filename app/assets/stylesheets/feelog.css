@@ -809,3 +809,14 @@ a { color: inherit; text-decoration: none; }
   color: var(--color-text-sub);
   margin-top: 1.5rem;
 }
+
+/* PUBLIC POSTS */
+.post-card-author {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: .75rem;
+  color: var(--color-mauve);
+  font-weight: 600;
+}
+.post-card-author .material-symbols-outlined { font-size: 14px; }
