@@ -9,8 +9,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  # 公開投稿一覧
-  get 'public_posts', to: 'public_posts#index', as: :public_posts
+  # 公開投稿
+  get 'public_posts',     to: 'public_posts#index', as: :public_posts
+  get 'public_posts/:id', to: 'public_posts#show',  as: :public_post
 
   # マイページ
   get 'mypage', to: 'mypage#index', as: :mypage
