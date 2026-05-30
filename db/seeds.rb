@@ -31,7 +31,3 @@ Emotion.where(name: old_names).find_each(&:destroy)
 ].each do |name|
   Emotion.find_or_create_by!(name: name)
 end
-
-# 管理者アカウントの設定
-admin = User.find_by(email: 'tec.sa.lmnt@gmail.com')
-admin&.update!(role: :admin)
