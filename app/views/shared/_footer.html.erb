@@ -1,0 +1,36 @@
+<% if user_signed_in? %>
+  <footer class="feelog-footer">
+    <nav class="footer-nav">
+      <%# いいね %>
+      <%= link_to likes_path, class: "footer-nav-item" do %>
+        <span class="material-symbols-outlined footer-nav-icon">favorite</span>
+        <span class="footer-nav-label">いいね</span>
+      <% end %>
+
+      <%# マップ %>
+      <%= link_to map_path, class: "footer-nav-item" do %>
+        <span class="material-symbols-outlined footer-nav-icon">map</span>
+        <span class="footer-nav-label">マップ</span>
+      <% end %>
+
+      <%# 新規作成（中央） %>
+      <%= link_to new_post_path, class: "footer-nav-item footer-nav-item--create" do %>
+        <div class="create-btn-circle">
+          <span class="material-symbols-outlined">add</span>
+        </div>
+      <% end %>
+
+      <%# みんなの旅 %>
+      <%= link_to public_posts_path, class: "footer-nav-item #{'footer-nav-item--active' if controller_name == 'public_posts'}" do %>
+        <span class="material-symbols-outlined footer-nav-icon">travel_explore</span>
+        <span class="footer-nav-label">みんなの旅</span>
+      <% end %>
+
+      <%# 行きたい！ %>
+      <%= link_to wish_lists_path, class: "footer-nav-item" do %>
+        <span class="material-symbols-outlined footer-nav-icon">flag</span>
+        <span class="footer-nav-label">行きたい！</span>
+      <% end %>
+    </nav>
+  </footer>
+<% end %>
