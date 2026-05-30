@@ -1,9 +1,12 @@
 <div class="mypage-wrapper">
   <div class="posts-header">
-    <h1 class="section-title">
-      <span class="material-symbols-outlined">public</span>
-      みんなの旅
-    </h1>
+    <div>
+        <h1 class="section-title">
+            <span class="material-symbols-outlined">travel_explore</span>
+            みんなの旅
+        </h1>
+        <p class="page-subtitle">みんなの旅の記録を見てみよう</p>
+    </div>
   </div>
 
   <% if @posts.empty? %>
@@ -15,7 +18,7 @@
   <% else %>
     <div class="posts-grid">
       <% @posts.each do |post| %>
-        <div class="post-card">
+        <%= link_to public_post_path(post), class: "post-card" do %>
           <div class="post-card-thumb">
             <% if post.image.attached? %>
               <%= image_tag post.image, class: "post-card-img", alt: post.title %>
@@ -38,7 +41,7 @@
               <%= post.user.name %>
             </p>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   <% end %>
