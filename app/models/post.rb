@@ -12,4 +12,8 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :is_public, inclusion: { in: [true, false] }
+
+  # Geocoder
+  geocoded_by :place
+  after_validation :geocode, if: :place_changed?
 end

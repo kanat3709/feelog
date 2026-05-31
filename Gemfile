@@ -52,6 +52,9 @@ gem 'cloudinary'
 # 認証機能
 gem 'devise'
 
+# 位置情報
+gem 'geocoder'
+
 # メール送信（SendGrid Web API）
 gem 'sendgrid-actionmailer'
 
