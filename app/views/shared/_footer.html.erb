@@ -8,7 +8,7 @@
       <% end %>
 
       <%# マップ %>
-      <%= link_to map_path, class: "footer-nav-item" do %>
+      <%= link_to map_path, class: "footer-nav-item", data: { turbo: false } do %>
         <span class="material-symbols-outlined footer-nav-icon">map</span>
         <span class="footer-nav-label">マップ</span>
       <% end %>
