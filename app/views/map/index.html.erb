@@ -36,14 +36,10 @@
     });
   }
 
-  <%# 変更後 %>
+  window.addEventListener("mapsReady", initMap);
   document.addEventListener("turbo:load", function() {
-    if (document.getElementById("map")) {
+    if (typeof google !== "undefined" && google.maps) {
       initMap();
     }
   });
-
-  if (document.getElementById("map")) {
-    initMap();
-  }
 </script>
