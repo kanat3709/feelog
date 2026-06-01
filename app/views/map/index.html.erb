@@ -36,5 +36,14 @@
     });
   }
 
-  document.addEventListener("turbo:load", initMap);
+  <%# 変更後 %>
+  document.addEventListener("turbo:load", function() {
+    if (document.getElementById("map")) {
+      initMap();
+    }
+  });
+
+  if (document.getElementById("map")) {
+    initMap();
+  }
 </script>
