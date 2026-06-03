@@ -12,6 +12,106 @@
   </div>
 </section>
 
+<%# ====== 使い方セクション ====== %>
+<section style="background-color: #faf8f5; padding: 72px 24px;">
+  <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+
+    <%# セクションタイトル %>
+    <p style="font-size: 12px; font-weight: 700; letter-spacing: 0.15em; color: #b39dab; text-transform: uppercase; margin-bottom: 12px;">
+      How to use
+    </p>
+    <h2 style="font-size: 26px; font-weight: 700; color: #4a3d52; margin-bottom: 8px;">
+      3ステップで旅の感情を残そう
+    </h2>
+    <p style="font-size: 14px; color: #8a7a92; margin-bottom: 52px;">
+      はじめての方でも、かんたんに使えます。
+    </p>
+
+    <%# ステップカード群 %>
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;">
+
+      <%# Step 1 %>
+      <div style="background: #fff; border-radius: 20px; padding: 36px 28px; width: 240px;
+                  box-shadow: 0 2px 16px rgba(179,157,171,0.13); position: relative;">
+        <div style="width: 48px; height: 48px; border-radius: 50%;
+                    background: linear-gradient(135deg, #e8a0a0, #c97b9e);
+                    display: flex; align-items: center; justify-content: center;
+                    margin: 0 auto 20px;">
+          <i class="ti ti-map-pin" style="font-size: 22px; color: #fff;"></i>
+        </div>
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+                    color: #c97b9e; margin-bottom: 10px;">STEP 01</div>
+        <h3 style="font-size: 16px; font-weight: 700; color: #4a3d52; margin-bottom: 10px;">
+          旅行を記録する
+        </h3>
+        <p style="font-size: 13px; color: #8a7a92; line-height: 1.7; margin: 0;">
+          訪れた場所・写真・感情タグを選んで投稿するだけ。
+        </p>
+      </div>
+
+      <%# 矢印（PC表示） %>
+      <div style="display: flex; align-items: center; color: #d4bfcc; font-size: 24px; padding-top: 20px;">
+        <i class="ti ti-chevron-right"></i>
+      </div>
+
+      <%# Step 2 %>
+      <div style="background: #fff; border-radius: 20px; padding: 36px 28px; width: 240px;
+                  box-shadow: 0 2px 16px rgba(179,157,171,0.13); position: relative;">
+        <div style="width: 48px; height: 48px; border-radius: 50%;
+                    background: linear-gradient(135deg, #a0c4e8, #7b9ec9);
+                    display: flex; align-items: center; justify-content: center;
+                    margin: 0 auto 20px;">
+          <i class="ti ti-layout-grid" style="font-size: 22px; color: #fff;"></i>
+        </div>
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+                    color: #7b9ec9; margin-bottom: 10px;">STEP 02</div>
+        <h3 style="font-size: 16px; font-weight: 700; color: #4a3d52; margin-bottom: 10px;">
+          一覧で確認する
+        </h3>
+        <p style="font-size: 13px; color: #8a7a92; line-height: 1.7; margin: 0;">
+          マイページでこれまでの旅の記録をカード形式で一覧表示。
+        </p>
+      </div>
+
+      <%# 矢印（PC表示） %>
+      <div style="display: flex; align-items: center; color: #d4bfcc; font-size: 24px; padding-top: 20px;">
+        <i class="ti ti-chevron-right"></i>
+      </div>
+
+      <%# Step 3 %>
+      <div style="background: #fff; border-radius: 20px; padding: 36px 28px; width: 240px;
+                  box-shadow: 0 2px 16px rgba(179,157,171,0.13); position: relative;">
+        <div style="width: 48px; height: 48px; border-radius: 50%;
+                    background: linear-gradient(135deg, #a0e8c4, #7bc9a0);
+                    display: flex; align-items: center; justify-content: center;
+                    margin: 0 auto 20px;">
+          <i class="ti ti-heart" style="font-size: 22px; color: #fff;"></i>
+        </div>
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+                    color: #7bc9a0; margin-bottom: 10px;">STEP 03</div>
+        <h3 style="font-size: 16px; font-weight: 700; color: #4a3d52; margin-bottom: 10px;">
+          詳細で振り返る
+        </h3>
+        <p style="font-size: 13px; color: #8a7a92; line-height: 1.7; margin: 0;">
+          投稿詳細では地図・写真・感情を一緒に振り返れます。
+        </p>
+      </div>
+
+    </div><%# /cards %>
+
+    <%# CTAボタン %>
+    <div style="margin-top: 48px;">
+      <%= link_to "さっそく始める（無料）", new_user_registration_path,
+            style: "display: inline-block; padding: 14px 40px; border-radius: 50px;
+                    background: linear-gradient(135deg, #e8a0a0, #c97b9e);
+                    color: #fff; font-weight: 700; font-size: 15px;
+                    text-decoration: none; letter-spacing: 0.05em;
+                    box-shadow: 0 4px 18px rgba(201,123,158,0.35);" %>
+    </div>
+
+  </div>
+</section>
+
 <%# 投稿例セクション %>
 <section style="padding: 5rem 2rem;">
   <p style="font-size: 11px; font-weight: 600; color: #9C6B7A; text-transform: uppercase; letter-spacing: 0.1em; text-align: center; margin-bottom: 0.75rem;">Your Story</p>
