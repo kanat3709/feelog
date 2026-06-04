@@ -38,7 +38,7 @@
     <% end %>
   </head>
 
-  <body>
+  <body class="<%= user_signed_in? ? 'body--logged-in' : 'body--guest' %>">
     <%= render 'shared/header' %>
 
     <% if notice %>
@@ -66,6 +66,10 @@
       <%= yield %>
     </main>
 
-    <%= render 'shared/footer' %>
+    <% if user_signed_in? %>
+      <%= render 'shared/footer' %>
+    <% else %>
+      <%= render 'shared/guest_footer' %>
+    <% end %>
   </body>
 </html>

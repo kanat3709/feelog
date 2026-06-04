@@ -1,0 +1,9 @@
+<%# app/views/shared/_guest_footer.html.erb %>
+<footer class="guest-footer">
+  <div class="guest-footer__inner">
+    <%= link_to "利用規約", terms_path, class: "guest-footer__link" %>
+    <span class="guest-footer__sep">|</span>
+    <%= link_to "プライバシーポリシー", privacy_path, class: "guest-footer__link" %>
+  </div>
+  <p class="guest-footer__copy">&copy; <%= Time.current.year %> Feelog</p>
+</footer>
