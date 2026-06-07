@@ -1,8 +1,18 @@
-<div style="display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 60px - 80px); padding: 2rem 1.5rem;">
-  <div style="display: grid; grid-template-columns: 1fr 1fr; background: rgba(255,255,255,0.65); backdrop-filter: blur(24px); border-radius: 1rem; border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 10px 40px rgba(125,84,79,0.07); width: 100%; max-width: 1000px; overflow: hidden;">
+<style>
+  .signup-outer { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 60px - 80px); padding: 2rem 1.5rem; }
+  .signup-grid { display: grid; grid-template-columns: 1fr 1fr; background: rgba(255,255,255,0.65); backdrop-filter: blur(24px); border-radius: 1rem; border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 10px 40px rgba(125,84,79,0.07); width: 100%; max-width: 1000px; overflow: hidden; }
+  .signup-img-panel { position: relative; overflow: hidden; }
+  @media (max-width: 640px) {
+    .signup-outer { padding: 1rem; }
+    .signup-grid { grid-template-columns: 1fr; }
+    .signup-img-panel { display: none; }
+  }
+</style>
+<div class="signup-outer">
+  <div class="signup-grid">
 
     <%# 左パネル %>
-    <div style="position: relative; overflow: hidden;">
+    <div class="signup-img-panel">
       <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPc5HZR_6fpaVPddVTn5PNtWDCkLq1vyaZUuo_IXjiYGD--zRxiBf9NEBWl4GXuAm85aHqxBhi6MDeUT_ZYaCYMhOp-UxTS1gICci0RTqnHYatZJFsAi2ygbx_PQoNSSphxFsWMnSD2T56rW1EP_2-rQDErUmD8n_pJU7HqotrZLC0VyZO-YILKfD580Nmu6ykL539yp5XD-5cXy1L4GexZAOeMvzvzk80cw6FsBkEGL4wJ2S9p2gdDpIyR-XY9tpS9T6xZAC8w5o" alt="journal" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"/>
       <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(125,84,79,0.6) 0%, rgba(125,84,79,0.15) 60%, transparent 100%);"></div>
       <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 2.5rem;">

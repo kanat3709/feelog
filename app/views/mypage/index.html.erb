@@ -3,7 +3,7 @@
 
   <%# ── プロフィール ── %>
   <section class="mypage-profile" aria-label="プロフィール">
-    <div class="profile-inner">
+    <div style="display: flex; align-items: center; gap: 12px;">
       <div class="profile-avatar-wrap">
         <% if current_user.avatar.attached? %>
           <%= image_tag current_user.avatar, class: "profile-avatar", alt: current_user.name %>
@@ -15,7 +15,8 @@
         <h1 class="profile-name"><%= current_user.name %></h1>
         <p class="profile-email"><%= current_user.email %></p>
       </div>
-      <%= link_to edit_user_path(current_user), class: "btn-edit-profile" do %>
+      <%# PC のみ表示 %>
+      <%= link_to edit_user_path(current_user), class: "btn-edit-profile btn-edit-profile--pc" do %>
         <span class="material-symbols-outlined">edit</span>
         プロフィール編集
       <% end %>
