@@ -1,4 +1,5 @@
-<%= form_with model: post, local: true, class: "post-form" do |f| %>
+<%= form_with model: post, local: true, class: "post-form",
+    data: { controller: "form-loading" } do |f| %>
 
   <%# エラーメッセージ %>
   <% if post.errors.any? %>
@@ -139,7 +140,9 @@
     <%= link_to post.persisted? ? post_path(post) : mypage_path, class: "btn-cancel" do %>
       キャンセル
     <% end %>
-    <%= f.submit post.persisted? ? "更新する" : "記録する", class: "btn-submit" %>
+    <%= f.submit post.persisted? ? "更新する" : "記録する",
+        class: "btn-submit",
+        data: { "form-loading-target": "submitButton" } %>
   </div>
 
 <% end %>
@@ -160,10 +163,25 @@
         const file = e.target.files[0];
         if (!file) return;
         if (removeFlag) removeFlag.value = '0';
+
+        // ★追加：画像ローディング表示
+        if (area) {
+          area.innerHTML = '<span class="image-loading-spinner"></span>';
+          area.style.display = 'flex';
+        }
+        previewWrap.style.display = 'none';
+
         const reader = new FileReader();
         reader.onload = (ev) => {
           preview.src = ev.target.result;
-          if (area) area.style.display = 'none';
+          if (area) {
+            area.style.display = 'none';
+            // ★追加：スピナーを元に戻す（削除後に再クリックできるよう）
+            area.innerHTML = `
+              <span class="material-symbols-outlined image-upload-icon">add_photo_alternate</span>
+              <p class="image-upload-text">クリックして写真を選択</p>
+            `;
+          }
           previewWrap.style.display = 'block';
         };
         reader.readAsDataURL(file);
