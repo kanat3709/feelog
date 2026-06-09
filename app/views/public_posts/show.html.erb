@@ -1,3 +1,10 @@
+<% content_for :ogp_title, @post.title %>
+<% content_for :ogp_description, @post.memo.presence || "#{@post.title}の旅の記録" %>
+<% content_for :ogp_type, "article" %>
+<% if @post.image.attached? %>
+  <% content_for :ogp_image, url_for(@post.image) %>
+<% end %>
+
 <div class="post-detail-wrapper">
   <%= link_to public_posts_path, class: "post-detail-back" do %>
     <span class="material-symbols-outlined">arrow_back</span>
