@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Feelog" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Feelog" %></title>
+    <meta property="og:site_name" content="Feelog" />
+    <meta property="og:title" content="<%= content_for?(:ogp_title) ? yield(:ogp_title) : "Feelog" %>" />
+    <meta property="og:description" content="<%= content_for?(:ogp_description) ? yield(:ogp_description) : "旅の記憶と感情を記録するアプリ" %>" />
+    <meta property="og:type" content="<%= content_for?(:ogp_type) ? yield(:ogp_type) : "website" %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= content_for?(:ogp_image) ? yield(:ogp_image) : "https://res.cloudinary.com/duwmjs0wa/image/upload/v1780841677/cugjfb68igavpkxq0cr43u5hcypj.jpg" %>" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Feelog">
