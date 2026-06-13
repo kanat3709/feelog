@@ -51,6 +51,9 @@ gem 'cloudinary'
 
 # 認証機能
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 # 位置情報
 gem 'geocoder'

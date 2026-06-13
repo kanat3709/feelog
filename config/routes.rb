@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get 'terms',   to: 'static_pages#terms'
   get 'privacy', to: 'static_pages#privacy'
 
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
 
   # 公開投稿
   get 'public_posts',     to: 'public_posts#index', as: :public_posts

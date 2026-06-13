@@ -1021,3 +1021,49 @@ a { color: inherit; text-decoration: none; }
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
+
+.oauth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.25rem 0;
+  color: #bfb3b1;
+  font-size: 0.85rem;
+}
+
+.oauth-divider::before,
+.oauth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e5dedd;
+}
+
+.oauth-divider span {
+  padding: 0 0.75rem;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background: #fff;
+  border: 1px solid #e5dedd;
+  border-radius: 8px;
+  color: #333;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.google-btn:hover {
+  background: #f7f7f7;
+}
+
+.google-icon {
+  width: 20px;
+  height: 20px;
+}
