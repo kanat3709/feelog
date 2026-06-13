@@ -20,6 +20,17 @@ Devise.setup do |config|
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
 
+  # ==> OmniAuth Configuration
+  config.omniauth :google_oauth2,
+                  ENV.fetch('GOOGLE_CLIENT_ID', nil),
+                  ENV.fetch('GOOGLE_CLIENT_SECRET', nil),
+                  {
+                    scope: 'email,profile',
+                    prompt: 'select_account',
+                    image_aspect_ratio: 'square',
+                    image_size: 50
+                  }
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
