@@ -1,4 +1,5 @@
-require:
+# rubocop-rails をプラグインとして読み込む（require は非推奨のため plugins に移行）
+plugins:
   - rubocop-rails
 
 AllCops:
@@ -13,25 +14,42 @@ AllCops:
     - 'tmp/**/*'
     - 'log/**/*'
     - 'config/environments/**/*'
+  # rubocop-capybara / factory_bot / rspec / rspec_rails の導入提案を非表示にする
+  # 現時点では RSpec テストを本格的に記述していないため不要
+  SuggestExtensions: false
 
+# クラスにコメントを必須とするルールを無効化
+# 小規模アプリのため、クラス名で目的が自明なものが多く、冗長なコメントを避けるため
 Style/Documentation:
   Enabled: false
 
+# メソッドの行数上限をデフォルト（10行）から20行に緩和
+# Railsのコントローラーアクションはレスポンス分岐等で長くなりやすいため
 Metrics/MethodLength:
   Max: 20
 
+# ブロックの行数チェックをspec・routesファイルで除外
+# spec: テストのdescribe/contextブロックは長くなりやすい
+# routes.rb: エンドポイント定義が集中するため行数が増えることが多い
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'config/routes.rb'
 
+# 行の長さチェックをDevise初期化ファイルで除外
+# devise.rb はコメントを多く含む自動生成ファイルであり、手動での行折り返しが困難なため
 Layout/LineLength:
   Exclude:
     - 'config/initializers/devise.rb'
 
+# 日本語テキストをロケールファイルに移動するルールを無効化
+# 本アプリは日本語のみ対応のため、多言語化対応の予定がなく適用不要なため
 Rails/I18nLocaleTexts:
   Enabled: false
 
+# ABCサイズ（条件分岐・代入・メソッド呼び出し数）チェックをpostsコントローラーで除外
+# create/updateアクションでGeocoderの処理・画像保存・フラッシュメッセージ等が集中し、
+# 意味のある単位での分割が難しいため
 Metrics/AbcSize:
   Exclude:
     - 'app/controllers/posts_controller.rb'
