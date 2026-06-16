@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PublicPostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: []
   before_action :set_post, only: [:show]
 
   def index
