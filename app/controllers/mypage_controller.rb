@@ -12,12 +12,20 @@ class MypageController < ApplicationController
     @total_likes = 0
 
     # 感情サマリ（emotions.id順で表示）
-    @emotion_summary = Emotion.order(:id).each_with_object({}) do |emotion, hash|
-      count = current_user.posts
-                          .joins(post_emotions: :emotion)
-                          .where(emotions: { id: emotion.id })
-                          .count
-      hash[emotion.name] = count if count.positive?
-    end
+    @emotion_summary = build_emotion_summary
+  end
+
+  private
+
+  def build_emotion_summary
+    emotion_order = Emotion.order(:id).pluck(:name)
+    emotion_counts = current_user.posts
+                                 .joins(post_emotions: :emotion)
+                                 .group('emotions.name')
+                                 .count
+    emotion_counts
+      .select { |_name, count| count.positive? }
+      .sort_by { |name, _count| emotion_order.index(name) || 999 }
+      .to_h
   end
 end
