@@ -47,7 +47,10 @@
       <% if @post.emotions.any? %>
         <div class="post-detail-emotions">
           <% @post.emotions.each do |emotion| %>
-            <span class="post-detail-emotion-chip"><%= emotion.name %></span>
+            <span class="post-detail-emotion-chip">
+              <i class="ti <%= emotion_icon(emotion.name) %>"></i>
+              <%= emotion.name %>
+            </span>
           <% end %>
         </div>
       <% end %>
