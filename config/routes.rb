@@ -21,8 +21,6 @@ Rails.application.routes.draw do
   # 投稿
   resources :posts do
     member do
-      post   :like
-      delete :unlike
       post   :wish
       delete :unwish
       post   :hide
@@ -30,8 +28,11 @@ Rails.application.routes.draw do
     end
   end
 
+  # いいね
+  resources :likes, only: %i[create destroy], param: :post_id
+
   # いいね一覧
-  get 'likes',      to: 'likes#index',      as: :likes
+  get 'likes', to: 'likes#index', as: :likes_index
 
   # マップ
   get 'map',        to: 'map#index',        as: :map

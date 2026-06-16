@@ -65,6 +65,9 @@
         </div>
       <% end %>
 
+      <%# いいねボタン %>
+      <%= render "likes/like_button", post: @post %>
+
       <%# 管理者のみ表示される非表示・再表示ボタン %>
       <% if current_user&.admin? %>
         <div class="post-detail-admin">

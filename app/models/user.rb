@@ -12,7 +12,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :terms_of_service, acceptance: true, unless: :provider?
 
-  has_many :posts, dependent: :destroy # 追加
+  has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   has_one_attached :avatar
 

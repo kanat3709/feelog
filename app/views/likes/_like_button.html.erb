@@ -1,0 +1,20 @@
+<div id="like-button-<%= post.id %>">
+  <% if current_user && current_user != post.user %>
+    <% liked = current_user.likes.exists?(post_id: post.id) %>
+    <% if liked %>
+      <%= button_to like_path(post.id), method: :delete,
+            class: "btn-like btn-like--active",
+            data: { turbo_stream: true } do %>
+        <span class="material-symbols-outlined">favorite</span>
+        <span class="like-count"><%= post.likes.size %></span>
+      <% end %>
+    <% else %>
+      <%= button_to likes_path(post_id: post.id), method: :post,
+            class: "btn-like",
+            data: { turbo_stream: true } do %>
+        <span class="material-symbols-outlined">favorite_border</span>
+        <span class="like-count"><%= post.likes.size %></span>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
