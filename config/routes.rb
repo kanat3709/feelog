@@ -35,10 +35,15 @@ Rails.application.routes.draw do
   get 'likes', to: 'likes#index', as: :likes_index
 
   # マップ
-  get 'map',        to: 'map#index',        as: :map
+  get 'map', to: 'map#index', as: :map
 
-  # 行きたい！一覧
-  get 'wish_lists', to: 'wish_lists#index', as: :wish_lists
+  # 行きたい！
+  resources :wish_lists, only: %i[create destroy] do
+    member do
+      patch :toggle_visited
+    end
+  end
+  get 'wish_lists', to: 'wish_lists#index', as: :wish_lists_index
 
   # ユーザー情報変更
   resources :users, only: %i[edit update]

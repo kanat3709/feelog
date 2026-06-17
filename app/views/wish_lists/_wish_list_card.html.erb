@@ -1,0 +1,42 @@
+<div id="wish-list-card-<%= wish_list.id %>"
+     class="wish-list-card <%= 'wish-list-card--visited' if wish_list.visited %>">
+  <% post = wish_list.post %>
+  <div class="wish-list-card-inner">
+    <%= link_to public_post_path(post), class: "wish-list-card-link" do %>
+      <div class="wish-list-card-image-wrap">
+        <% if post.image.attached? %>
+          <%= image_tag post.image, class: "wish-list-card-image", alt: post.title %>
+        <% else %>
+          <div class="wish-list-card-image-placeholder">
+            <span class="material-symbols-outlined">image</span>
+          </div>
+        <% end %>
+      </div>
+      <div class="wish-list-card-body">
+        <p class="wish-list-card-title"><%= post.title %></p>
+        <% if post.place.present? %>
+          <p class="wish-list-card-place">
+            <span class="material-symbols-outlined">location_on</span>
+            <%= post.place %>
+          </p>
+        <% end %>
+        <p class="wish-list-card-user">
+          <span class="material-symbols-outlined">person</span>
+          <%= post.user.name %>
+        </p>
+      </div>
+    <% end %>
+    <div class="wish-list-card-action">
+      <%= button_to toggle_visited_wish_list_path(wish_list), method: :patch,
+            class: "btn-toggle-visited #{wish_list.visited ? 'btn-toggle-visited--done' : ''}",
+            data: { turbo_stream: true } do %>
+        <% if wish_list.visited %>
+          <span class="material-symbols-outlined">check_circle</span>
+        <% else %>
+          <span class="material-symbols-outlined">radio_button_unchecked</span>
+        <% end %>
+        行った！
+      <% end %>
+    </div>
+  </div>
+</div>

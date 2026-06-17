@@ -1,0 +1,19 @@
+<div id="wish-button-<%= post.id %>">
+  <% if current_user && current_user != post.user %>
+    <% wished = current_user.wish_lists.exists?(post_id: post.id) %>
+    <% wish_list = current_user.wish_lists.find_by(post_id: post.id) %>
+    <% if wished %>
+      <%= button_to wish_list_path(wish_list), method: :delete,
+            class: "btn-wish btn-wish--active",
+            data: { turbo_stream: true } do %>
+        <span class="material-symbols-outlined">flag</span>
+      <% end %>
+    <% else %>
+      <%= button_to wish_lists_path(post_id: post.id), method: :post,
+            class: "btn-wish",
+            data: { turbo_stream: true } do %>
+        <span class="material-symbols-outlined">flag</span>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

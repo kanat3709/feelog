@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "wish-button-#{@post.id}" do %>
+  <%= render "wish_lists/wish_button", post: @post %>
+<% end %>
+
+<%= turbo_stream.replace "wish-list-card-#{@wish_list.id}" do %>
+  <%= render "wish_lists/wish_list_card", wish_list: @wish_list %>
+<% end %>
