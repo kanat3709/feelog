@@ -1105,3 +1105,238 @@ a { color: inherit; text-decoration: none; }
   font-size: 14px;
   font-weight: 600;
 }
+
+/* ===== 行きたい！ボタン（投稿詳細ページ） ===== */
+.btn-wish {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 14px;
+  height: 36px;
+  border: 1.5px solid var(--color-mint);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--color-mint);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  margin-top: 0;
+}
+
+.btn-wish .material-symbols-outlined {
+  font-size: 20px;
+}
+
+.btn-wish:hover {
+  border-color: var(--color-mint);
+  color: var(--color-mint);
+}
+
+.btn-wish--active {
+  background: var(--color-mint);
+  border-color: var(--color-mint);
+  color: #fff;
+}
+
+.btn-wish--active:hover {
+  background: #5ea898;
+  border-color: #5ea898;
+}
+
+/* ===== 行きたい！一覧ページ ===== */
+.wish-list-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.wish-list-header .material-symbols-outlined {
+  font-size: 24px;
+  color: var(--color-mauve);
+}
+
+.wish-list-header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-mauve);
+}
+
+.wish-list-subtitle {
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 24px;
+}
+
+.wish-list-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wish-list-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.wish-list-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.wish-list-card--visited {
+  opacity: 0.8;
+}
+
+.wish-list-card-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0 10px 10px;
+}
+
+.wish-list-card-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+  min-width: 0;
+}
+
+.wish-list-card-image-wrap {
+  width: 120px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.wish-list-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wish-list-card-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0ece4;
+  color: #ccc;
+}
+
+.wish-list-card-body {
+  flex: 1;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.wish-list-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.wish-list-card-place,
+.wish-list-card-user {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #888;
+}
+
+.wish-list-card-place .material-symbols-outlined,
+.wish-list-card-user .material-symbols-outlined {
+  font-size: 14px;
+}
+
+.wish-list-card-action {
+  padding: 0 16px;
+  flex-shrink: 0;
+}
+
+.btn-toggle-visited {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 12px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--color-text-sub);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.btn-toggle-visited .material-symbols-outlined {
+  font-size: 20px;
+}
+
+.btn-toggle-visited:hover {
+  border-color: var(--color-mauve-light);
+  color: var(--color-mauve-light);
+}
+
+.btn-toggle-visited--done {
+  background: var(--grad-primary);
+  border-color: transparent;
+  color: #fff;
+}
+
+.btn-toggle-visited--done:hover {
+  opacity: 0.85;
+}
+
+/* ===== 投稿詳細：いいね＋行きたい！横並び ===== */
+.post-detail-reactions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.post-detail-reactions .btn-like {
+  margin-top: 0;
+}
+
+.post-detail-reactions .btn-wish {
+  height: 36px;
+}
+
+/* ===== 行きたい！一覧：空状態 ===== */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--color-bg-card);
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.empty-state-icon {
+  font-size: 56px;
+  color: var(--color-mauve-light);
+  margin-bottom: 12px;
+}
+
+.empty-state-text {
+  font-size: .875rem;
+  color: var(--color-text-sub);
+  margin-bottom: 24px;
+}

@@ -1,2 +1,28 @@
-<h1>WishLists#index</h1>
-<p>Find me in app/views/wish_lists/index.html.erb</p>
+<div class="mypage-wrapper">
+  <div class="posts-header">
+    <div>
+      <h1 class="section-title">
+        <span class="material-symbols-outlined">flag</span>
+        行きたい！
+      </h1>
+      <p class="page-subtitle">行ってみたい旅の記録</p>
+    </div>
+  </div>
+
+  <% if @wish_lists.empty? %>
+    <div class="posts-empty">
+      <p class="posts-empty-title">
+        <span class="material-symbols-outlined" style="font-size: 22px; color: var(--color-mauve); vertical-align: middle; margin-right: 4px;">flag</span>
+        まだ「行きたい！」した投稿がありません
+      </p>
+      <p class="posts-empty-sub">みんなの旅を見て、気になった場所を登録してみましょう！</p>
+      <%= link_to "みんなの旅を見る", public_posts_path, class: "btn-primary" %>
+    </div>
+  <% else %>
+    <div class="wish-list-grid">
+      <% @wish_lists.each do |wish_list| %>
+        <%= render "wish_lists/wish_list_card", wish_list: wish_list %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -65,8 +65,13 @@
         </div>
       <% end %>
 
-      <%# いいねボタン %>
-      <%= render "likes/like_button", post: @post %>
+      <div class="post-detail-reactions">
+        <%# いいねボタン %>
+        <%= render "likes/like_button", post: @post %>
+
+        <%# 行きたい！ボタン %>
+        <%= render "wish_lists/wish_button", post: @post %>
+      </div>
 
       <%# 管理者のみ表示される非表示・再表示ボタン %>
       <% if current_user&.admin? %>

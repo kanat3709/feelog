@@ -27,7 +27,7 @@
       <% end %>
 
       <%# 行きたい！ %>
-      <%= link_to wish_lists_path, class: "footer-nav-item" do %>
+      <%= link_to wish_lists_index_path, class: "footer-nav-item #{'footer-nav-item--active' if controller_name == 'wish_lists'}" do %>
         <span class="material-symbols-outlined footer-nav-icon">flag</span>
         <span class="footer-nav-label">行きたい！</span>
       <% end %>
