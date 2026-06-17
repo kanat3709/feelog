@@ -2,7 +2,7 @@
   <footer class="feelog-footer">
     <nav class="footer-nav">
       <%# いいね %>
-      <%= link_to likes_path, class: "footer-nav-item" do %>
+      <%= link_to likes_index_path, class: "footer-nav-item #{'footer-nav-item--active' if controller_name == 'likes'}" do %>
         <span class="material-symbols-outlined footer-nav-icon">favorite</span>
         <span class="footer-nav-label">いいね</span>
       <% end %>

@@ -3,7 +3,9 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
 
-  def index; end
+  def index
+    @liked_posts = current_user.likes.includes(:post).map(&:post)
+  end
 
   def create
     @post = Post.find(params[:post_id])
