@@ -1,19 +1,49 @@
 <div class="mypage-wrapper">
   <div class="posts-header">
     <div>
-        <h1 class="section-title">
-            <span class="material-symbols-outlined">travel_explore</span>
-            みんなの旅
-        </h1>
-        <p class="page-subtitle">みんなの旅の記録を見てみよう</p>
+      <h1 class="section-title">
+        <span class="material-symbols-outlined">travel_explore</span>
+        みんなの旅
+      </h1>
+      <p class="page-subtitle">みんなの旅の記録を見てみよう</p>
     </div>
   </div>
 
+  <%# 検索フォーム %>
+  <%= form_with url: public_posts_path, method: :get, local: true, class: "search-form" do |f| %>
+    <div class="search-input-wrapper">
+      <span class="material-symbols-outlined search-icon">search</span>
+      <%= f.text_field :q,
+            value: @query,
+            placeholder: "タイトル・場所で検索",
+            class: "search-input",
+            autocomplete: "off" %>
+      <% if @query.present? %>
+        <%= link_to public_posts_path, class: "search-clear" do %>
+          <span class="material-symbols-outlined">close</span>
+        <% end %>
+      <% end %>
+    </div>
+    <%= f.submit "検索", class: "search-submit" %>
+  <% end %>
+
+  <% if @query.present? %>
+    <p class="search-result-label">
+      「<strong><%= @query %></strong>」の検索結果：<%= @posts.size %>件
+    </p>
+  <% end %>
+
   <% if @posts.empty? %>
     <div class="posts-empty">
-      <div class="posts-empty-icon material-symbols-outlined">travel_explore</div>
-      <p class="posts-empty-title">まだ公開されている旅の記録がありません</p>
-      <p class="posts-empty-sub">あなたの旅を公開して、みんなとシェアしませんか？</p>
+      <% if @query.present? %>
+        <div class="posts-empty-icon material-symbols-outlined">search_off</div>
+        <p class="posts-empty-title">「<%= @query %>」に一致する投稿がありません</p>
+        <p class="posts-empty-sub">別のキーワードで検索してみてください</p>
+      <% else %>
+        <div class="posts-empty-icon material-symbols-outlined">travel_explore</div>
+        <p class="posts-empty-title">まだ公開されている旅の記録がありません</p>
+        <p class="posts-empty-sub">あなたの旅を公開して、みんなとシェアしませんか？</p>
+      <% end %>
     </div>
   <% else %>
     <div class="posts-grid">
