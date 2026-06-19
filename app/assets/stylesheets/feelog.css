@@ -1418,3 +1418,23 @@ a { color: inherit; text-decoration: none; }
   color: var(--color-text-sub);
   margin-bottom: 24px;
 }
+
+/* =====================
+   利用規約 / プライバシーポリシー
+   ===================== */
+.legal-container { display: flex; flex-direction: column; gap: 16px; }
+
+.legal-card { background: #fff; border-radius: 12px; padding: 20px 24px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+
+.legal-card h2 { font-size: .95rem; font-weight: 700; color: var(--color-mauve); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--color-mauve-light); }
+
+.legal-card p { font-size: .88rem; line-height: 1.75; color: #555; }
+
+.legal-card ul { font-size: .88rem; line-height: 1.75; color: #555; padding-left: 1.2em; list-style: disc; margin-top: 8px; }
+
+.legal-note { font-size: .8rem; color: #999; text-align: center; margin-top: 8px; }
+
+@media (max-width: 600px) {
+  .legal-card { padding: 16px 18px; }
+  .legal-card h2 { font-size: .9rem; }
+}
