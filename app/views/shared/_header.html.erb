@@ -2,7 +2,7 @@
 <header class="feelog-header">
   <div class="header-inner">
     <%# ── ロゴ ── %>
-    <%= link_to root_path, class: "header-logo" do %>
+    <%= link_to user_signed_in? ? mypage_path : root_path, class: "header-logo" do %>
       <span class="logo-mark">✦</span>
       <span class="logo-text">Feelog</span>
     <% end %>
